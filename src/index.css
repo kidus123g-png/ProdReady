@@ -1,0 +1,1311 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Fira+Code&family=Nunito:wght@400;600;700&family=Ubuntu+Mono&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&family=Orbitron:wght@700;900&family=Exo+2:wght@400;600&family=Share+Tech+Mono&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cascadia+Code&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+/* 150ms instant transition on color properties for flawless theme switching */
+*, *::before, *::after {
+  transition: 
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* THEME: NORD */
+[data-theme="nord"] {
+  /* Backgrounds */
+  --bg-base:        #2E3440;   /* Polar Night - darkest, main app bg */
+  --bg-surface:     #3B4252;   /* Polar Night 2 - sidebar, cards */
+  --bg-elevated:    #434C5E;   /* Polar Night 3 - card hover, modals */
+  --bg-overlay:     #4C566A;   /* Polar Night 4 - borders, dividers */
+
+  /* Snow / Text */
+  --text-primary:   #ECEFF4;   /* Snow Storm 3 - primary text */
+  --text-secondary: #E5E9F0;   /* Snow Storm 2 - secondary labels */
+  --text-muted:     #D8DEE9;   /* Snow Storm 1 - muted/placeholder */
+  --text-disabled:  #4C566A;   /* Disabled state */
+
+  /* Frost - accent colors */
+  --accent-primary: #88C0D0;   /* Frost 3 - primary CTA, links, active nav */
+  --accent-hover:   #81A1C1;   /* Frost 2 - hover state on primary */
+  --accent-active:  #5E81AC;   /* Frost 1 - pressed/active */
+  --accent-subtle:  rgba(136,192,208,0.12); /* ghost/tinted backgrounds */
+
+  /* Aurora - semantic colors */
+  --color-success:  #A3BE8C;   /* Aurora Green - certified, done */
+  --color-warning:  #EBCB8B;   /* Aurora Yellow - medium risk */
+  --color-danger:   #BF616A;   /* Aurora Red - high risk, blockers */
+  --color-info:     #B48EAD;   /* Aurora Purple - info badges */
+
+  /* Borders */
+  --border-subtle:  #3B4252;
+  --border-default: #4C566A;
+  --border-strong:  #88C0D0;
+
+  /* Progress / Charts */
+  --chart-fill:     #88C0D0;
+  --chart-grid:     #434C5E;
+  --progress-bg:    #4C566A;
+
+  /* Kanban specific */
+  --kanban-todo-header:   #3B4252;
+  --kanban-doing-header:  rgba(136,192,208,0.15);
+  --kanban-done-header:   rgba(163,190,140,0.15);
+  --kanban-card-bg:       #3B4252;
+  --kanban-card-border:   #434C5E;
+
+  /* Sidebar */
+  --sidebar-bg:     #2E3440;
+  --sidebar-active: rgba(136,192,208,0.15);
+  --sidebar-hover:  rgba(255,255,255,0.04);
+
+  /* Buttons */
+  --btn-primary-bg:   #5E81AC;
+  --btn-primary-text: #ECEFF4;
+  --btn-primary-hover:#81A1C1;
+  --btn-secondary-bg: #434C5E;
+  --btn-secondary-text:#E5E9F0;
+
+  /* Scrollbar */
+  --scrollbar-track: #2E3440;
+  --scrollbar-thumb: #4C566A;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
+
+  /* Typography */
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+  --font-display: 'Inter', sans-serif;
+
+  /* Mappings to Notion standards */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+}
+
+/* NORD CUSTOM VISUAL SYSTEM RULES */
+[data-theme="nord"] {
+  font-family: var(--font-sans) !important;
+}
+[data-theme="nord"] .font-mono, [data-theme="nord"] code, [data-theme="nord"] pre {
+  font-family: var(--font-mono) !important;
+}
+[data-theme="nord"] .active-sidebar-item {
+  border-left: 2px solid #88C0D0 !important;
+  background-color: var(--sidebar-active) !important;
+}
+[data-theme="nord"] .card-theme-target,
+[data-theme="nord"] .stats-card,
+[data-theme="nord"] .modal-content,
+[data-theme="nord"] .kanban-card,
+[data-theme="nord"] button,
+[data-theme="nord"] input,
+[data-theme="nord"] select,
+[data-theme="nord"] textarea {
+  border-radius: 4px !important;
+}
+[data-theme="nord"] .risk-high {
+  background-color: rgba(191,97,106,0.18) !important;
+  color: #BF616A !important;
+  border: 1px solid rgba(191,97,106,0.35) !important;
+}
+[data-theme="nord"] .risk-med {
+  background-color: rgba(235,203,139,0.15) !important;
+  color: #EBCB8B !important;
+  border: none !important;
+}
+[data-theme="nord"] .risk-low {
+  background-color: rgba(163,190,140,0.15) !important;
+  color: #A3BE8C !important;
+  border: none !important;
+}
+[data-theme="nord"] .btn-primary {
+  background-color: #5E81AC !important;
+  background-image: none !important;
+  color: #ECEFF4 !important;
+  border: none !important;
+}
+[data-theme="nord"] .btn-primary:hover {
+  background-color: #81A1C1 !important;
+}
+[data-theme="nord"] .progress-fill {
+  background-color: #88C0D0 !important;
+}
+[data-theme="nord"] .progress-track {
+  background-color: #4C566A !important;
+}
+[data-theme="nord"] ::-webkit-scrollbar-thumb {
+  background-color: #4C566A !important;
+}
+[data-theme="nord"] ::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+[data-theme="nord"] .kanban-card-done {
+  text-decoration: line-through !important;
+  color: var(--text-muted) !important;
+  opacity: 0.7;
+}
+
+/* THEME: TOKYO NIGHT */
+[data-theme="tokyo-night"] {
+  /* Backgrounds */
+  --bg-base:        #1A1B2E;   /* Deep midnight navy */
+  --bg-surface:     #16213E;   /* Card/sidebar surface */
+  --bg-elevated:    #0F3460;   /* Elevated elements, modals */
+  --bg-overlay:     #1A1B2E;   /* Overlay/drawer */
+
+  /* Text */
+  --text-primary:   #C0CAF5;   /* Soft lavender white */
+  --text-secondary: #A9B1D6;   /* Muted lavender */
+  --text-muted:     #565F89;   /* Very muted UI labels */
+  --text-disabled:  #3B4261;
+
+  /* Accents */
+  --accent-primary: #7AA2F7;   /* Electric cornflower blue */
+  --accent-hover:   #7DCFFF;   /* Cyan hover */
+  --accent-active:  #2AC3DE;   /* Active press - teal */
+  --accent-subtle:  rgba(122,162,247,0.12);
+
+  /* Semantic */
+  --color-success:  #9ECE6A;   /* Neon green */
+  --color-warning:  #E0AF68;   /* Amber */
+  --color-danger:   #F7768E;   /* Hot pink/red */
+  --color-info:     #BB9AF7;   /* Violet */
+
+  /* Borders */
+  --border-subtle:  #1F2335;
+  --border-default: #292E42;
+  --border-strong:  #7AA2F7;
+
+  /* Charts */
+  --chart-fill:     #7AA2F7;
+  --chart-grid:     #1F2335;
+  --progress-bg:    #292E42;
+
+  /* Kanban */
+  --kanban-todo-header:   #16213E;
+  --kanban-doing-header:  rgba(122,162,247,0.12);
+  --kanban-done-header:   rgba(158,206,106,0.12);
+  --kanban-card-bg:       #1F2335;
+  --kanban-card-border:   #292E42;
+
+  /* Sidebar */
+  --sidebar-bg:     #16213E;
+  --sidebar-active: rgba(122,162,247,0.15);
+  --sidebar-hover:  rgba(122,162,247,0.06);
+
+  /* Buttons */
+  --btn-primary-bg:   #7AA2F7;
+  --btn-primary-text: #1A1B2E;
+  --btn-primary-hover:#7DCFFF;
+  --btn-secondary-bg: #292E42;
+  --btn-secondary-text:#C0CAF5;
+
+  /* Scrollbar */
+  --scrollbar-track: #16213E;
+  --scrollbar-thumb: #292E42;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.6);
+  --shadow-md:  0 4px 24px rgba(122,162,247,0.08);
+
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'Fira Code', monospace;
+  --font-display: 'DM Sans', sans-serif;
+
+  /* Mappings to Notion standards */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+}
+
+/* TOKYO NIGHT CUSTOM VISUAL SYSTEM RULES */
+[data-theme="tokyo-night"] {
+  font-family: var(--font-sans) !important;
+}
+[data-theme="tokyo-night"] .font-mono, [data-theme="tokyo-night"] code, [data-theme="tokyo-night"] pre {
+  font-family: var(--font-mono) !important;
+}
+[data-theme="tokyo-night"] aside {
+  background-color: var(--sidebar-bg) !important;
+  border-right: 1px solid var(--border-subtle) !important;
+}
+[data-theme="tokyo-night"] .active-sidebar-item {
+  border-left: 3px solid #7AA2F7 !important;
+  background-color: var(--sidebar-active) !important;
+}
+[data-theme="tokyo-night"] .card-theme-target,
+[data-theme="tokyo-night"] .stats-card,
+[data-theme="tokyo-night"] .kanban-card {
+  border-radius: 10px !important;
+  border: 1px solid #292E42 !important;
+}
+[data-theme="tokyo-night"] .btn-primary {
+  background-color: #7AA2F7 !important;
+  background-image: none !important;
+  color: #1A1B2E !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+[data-theme="tokyo-night"] .btn-primary:hover {
+  background-color: #7DCFFF !important;
+}
+[data-theme="tokyo-night"] .danger-risk-badge {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+[data-theme="tokyo-night"] .progress-fill {
+  background-color: #7AA2F7 !important;
+  box-shadow: 0 0 8px rgba(122,162,247,0.5) !important;
+}
+[data-theme="tokyo-night"] .team-avatar {
+  border: 2px solid #BB9AF7 !important;
+}
+[data-theme="tokyo-night"] .section-header {
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+}
+[data-theme="tokyo-night"] .kanban-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+}
+
+/* THEME 3: DRACULA - Original dark theme royalty with purple-soaked nights */
+[data-theme="dracula"] {
+  /* Backgrounds */
+  --bg-base:        #282A36;   /* Dracula Background */
+  --bg-surface:     #21222C;   /* Darker surface, sidebar */
+  --bg-elevated:    #313341;   /* Cards, modals */
+  --bg-overlay:     #44475A;   /* Current Line / borders */
+
+  /* Text */
+  --text-primary:   #F8F8F2;   /* Dracula Foreground */
+  --text-secondary: #BFBFBF;   /* Dimmed */
+  --text-muted:     #6272A4;   /* Comment color */
+  --text-disabled:  #44475A;
+
+  /* Accents */
+  --accent-primary: #BD93F9;   /* Dracula Purple — primary */
+  --accent-hover:   #FF79C6;   /* Pink — hover spark */
+  --accent-active:  #8BE9FD;   /* Cyan — active/pressed */
+  --accent-subtle:  rgba(189,147,249,0.12);
+
+  /* Semantic */
+  --color-success:  #50FA7B;   /* Dracula Green */
+  --color-warning:  #FFB86C;   /* Dracula Orange */
+  --color-danger:   #FF5555;   /* Dracula Red */
+  --color-info:     #8BE9FD;   /* Dracula Cyan */
+
+  /* Borders */
+  --border-subtle:  #313341;
+  --border-default: #44475A;
+  --border-strong:  #BD93F9;
+
+  /* Charts */
+  --chart-fill:     #BD93F9;
+  --chart-grid:     #313341;
+  --progress-bg:    #44475A;
+
+  /* Kanban */
+  --kanban-todo-header:   #21222C;
+  --kanban-doing-header:  rgba(189,147,249,0.12);
+  --kanban-done-header:   rgba(80,250,123,0.10);
+  --kanban-card-bg:       #313341;
+  --kanban-card-border:   #44475A;
+
+  /* Sidebar */
+  --sidebar-bg:     #21222C;
+  --sidebar-active: rgba(189,147,249,0.18);
+  --sidebar-hover:  rgba(248,248,242,0.04);
+
+  /* Buttons */
+  --btn-primary-bg:   #BD93F9;
+  --btn-primary-text: #282A36;
+  --btn-primary-hover:#FF79C6;
+  --btn-secondary-bg: #44475A;
+  --btn-secondary-text:#F8F8F2;
+
+  /* Scrollbar */
+  --scrollbar-track: #21222C;
+  --scrollbar-thumb: #44475A;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.7);
+  --shadow-md:  0 4px 20px rgba(189,147,249,0.1);
+
+  --font-sans:    'Nunito', system-ui, sans-serif;
+  --font-mono:    'Ubuntu Mono', monospace;
+  --font-display: 'Nunito', sans-serif;
+
+  /* Notion Standard Mappings */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+
+  font-family: var(--font-sans) !important;
+}
+
+[data-theme="dracula"] .font-mono, 
+[data-theme="dracula"] code, 
+[data-theme="dracula"] pre {
+  font-family: var(--font-mono) !important;
+}
+
+[data-theme="dracula"] .active-sidebar-item {
+  border-left: 3px solid #BD93F9 !important;
+  background-color: rgba(189,147,249,0.18) !important;
+}
+
+[data-theme="dracula"] .sidebar-item:hover,
+[data-theme="dracula"] a:hover {
+  color: #FF79C6 !important;
+}
+
+[data-theme="dracula"] .btn-primary {
+  background-color: #BD93F9 !important;
+  color: #282A36 !important;
+  font-weight: bold !important;
+  transition: background 0.15s ease-in-out !important;
+  border: none !important;
+}
+
+[data-theme="dracula"] .btn-primary:hover {
+  background-color: #FF79C6 !important;
+  color: #282A36 !important;
+}
+
+[data-theme="dracula"] .risk-high {
+  background-color: rgba(255,85,85,0.15) !important;
+  color: #FF5555 !important;
+  border: 1px solid rgba(255,85,85,0.3) !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="dracula"] .checks-certified-badge {
+  background-color: rgba(80,250,123,0.12) !important;
+  color: #50FA7B !important;
+  border: 1px solid rgba(80,250,123,0.25) !important;
+  box-shadow: 0 0 10px rgba(80,250,123,0.25) !important;
+}
+
+[data-theme="dracula"] .progress-fill {
+  background-color: #BD93F9 !important;
+}
+
+[data-theme="dracula"] .progress-track {
+  background-color: #44475A !important;
+}
+
+[data-theme="dracula"] .card-theme-target,
+[data-theme="dracula"] .stats-card,
+[data-theme="dracula"] .kanban-card {
+  border-radius: 8px !important;
+  border: 1px solid #44475A !important;
+  background-color: #313341 !important;
+}
+
+[data-theme="dracula"] .env-badge {
+  background-color: rgba(189,147,249,0.2) !important;
+  color: #BD93F9 !important;
+  border: 1px solid rgba(189,147,249,0.4) !important;
+}
+
+[data-theme="dracula"] .kanban-card-done {
+  text-decoration: line-through !important;
+  text-decoration-color: #6272A4 !important;
+  color: #6272A4 !important;
+  opacity: 0.65 !important;
+}
+
+
+/* THEME 4: ROSÉ PINE - Warm editorial naturalism styled analog with muted dust roses */
+[data-theme="rose-pine"] {
+  /* Backgrounds */
+  --bg-base:        #191724;   /* Base — deep plum night */
+  --bg-surface:     #1F1D2E;   /* Surface — slightly warmer */
+  --bg-elevated:    #26233A;   /* Overlay — card/modal bg */
+  --bg-overlay:     #2A2837;   /* Muted overlay */
+
+  /* Text */
+  --text-primary:   #E0DEF4;   /* Text */
+  --text-secondary: #908CAA;   /* Subtle */
+  --text-muted:     #6E6A86;   /* Muted */
+  --text-disabled:  #3E3B53;
+
+  /* Accents */
+  --accent-primary: #C4A7E7;   /* Iris — purple rose */
+  --accent-hover:   #EBBCBA;   /* Rose pink on hover */
+  --accent-active:  #9CCFD8;   /* Foam teal — pressed */
+  --accent-subtle:  rgba(196,167,231,0.1);
+
+  /* Semantic */
+  --color-success:  #31748F;   /* Pine — teal/blue success */
+  --color-warning:  #F6C177;   /* Gold — warning */
+  --color-danger:   #EB6F92;   /* Love — danger red-rose */
+  --color-info:     #9CCFD8;   /* Foam — info */
+
+  /* Borders */
+  --border-subtle:  #26233A;
+  --border-default: #2A2837;
+  --border-strong:  #C4A7E7;
+
+  /* Charts */
+  --chart-fill:     #C4A7E7;
+  --chart-grid:     #26233A;
+  --progress-bg:    #2A2837;
+
+  /* Kanban */
+  --kanban-todo-header:   #1F1D2E;
+  --kanban-doing-header:  rgba(196,167,231,0.10);
+  --kanban-done-header:   rgba(49,116,143,0.12);
+  --kanban-card-bg:       #26233A;
+  --kanban-card-border:   #2A2837;
+
+  /* Sidebar */
+  --sidebar-bg:     #191724;
+  --sidebar-active: rgba(196,167,231,0.12);
+  --sidebar-hover:  rgba(224,222,244,0.04);
+
+  /* Buttons */
+  --btn-primary-bg:   #C4A7E7;
+  --btn-primary-text: #191724;
+  --btn-primary-hover:#EBBCBA;
+  --btn-secondary-bg: #2A2837;
+  --btn-secondary-text:#E0DEF4;
+
+  /* Scrollbar */
+  --scrollbar-track: #191724;
+  --scrollbar-thumb: #2A2837;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 6px rgba(0,0,0,0.5);
+  --shadow-md:  0 6px 24px rgba(0,0,0,0.45);
+
+  --font-sans:    'Source Sans 3', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'Lora', Georgia, serif;
+
+  /* Notion Standard Mappings */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+
+  font-family: var(--font-sans) !important;
+}
+
+[data-theme="rose-pine"] h1,
+[data-theme="rose-pine"] h2,
+[data-theme="rose-pine"] h3,
+[data-theme="rose-pine"] h4,
+[data-theme="rose-pine"] .card-title,
+[data-theme="rose-pine"] .section-header {
+  font-family: var(--font-display) !important;
+}
+
+[data-theme="rose-pine"] .font-mono,
+[data-theme="rose-pine"] code,
+[data-theme="rose-pine"] pre {
+  font-family: var(--font-mono) !important;
+}
+
+[data-theme="rose-pine"] aside {
+  background-color: #191724 !important;
+  border-right: 1px solid rgba(224,222,244,0.05) !important;
+}
+
+[data-theme="rose-pine"] .active-sidebar-item {
+  border-bottom: 2px solid #EBBCBA !important;
+  border-left: none !important;
+  font-weight: 600 !important;
+  color: #C4A7E7 !important;
+  background-color: var(--sidebar-active) !important;
+}
+
+[data-theme="rose-pine"] .card-theme-target,
+[data-theme="rose-pine"] .stats-card,
+[data-theme="rose-pine"] .kanban-card {
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-sm) !important;
+  border: 1px solid #2A2837 !important;
+  background-color: #26233A !important;
+}
+
+[data-theme="rose-pine"] .btn-primary,
+[data-theme="rose-pine"] button.btn-primary {
+  background-color: #C4A7E7 !important;
+  color: #191724 !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+[data-theme="rose-pine"] .btn-primary:hover {
+  background-color: #EBBCBA !important;
+  color: #191724 !important;
+}
+
+[data-theme="rose-pine"] .progress-fill {
+  background-color: #C4A7E7 !important;
+}
+
+[data-theme="rose-pine"] .progress-track {
+  background-color: #2A2837 !important;
+}
+
+[data-theme="rose-pine"] .risk-high {
+  color: #EB6F92 !important;
+  background-color: rgba(235,111,146,0.12) !important;
+  border: 1px solid rgba(235,111,146,0.25) !important;
+}
+
+[data-theme="rose-pine"] .team-avatar {
+  border: 2px solid rgba(235,188,186,0.4) !important;
+}
+
+[data-theme="rose-pine"] .section-header {
+  font-family: var(--font-display) !important;
+  font-style: italic !important;
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+}
+
+
+/* THEME 5: SYNTHWAVE '84 - High-octane glowing electric grids */
+[data-theme="synthwave84"] {
+  /* Backgrounds */
+  --bg-base:        #1A1033;   /* Deep space purple-black */
+  --bg-surface:     #2A1F4E;   /* Cosmic surface */
+  --bg-elevated:    #33265E;   /* Elevated card bg */
+  --bg-overlay:     #3D2F72;   /* Overlay panels */
+
+  /* Text */
+  --text-primary:   #F5F5FF;   /* Near-white, slight purple tint */
+  --text-secondary: #C792EA;   /* Soft purple prose */
+  --text-muted:     #7B6FA3;   /* Deep muted purple */
+  --text-disabled:  #3D2F72;
+
+  /* Accents — NEON */
+  --accent-primary: #FF6AC1;   /* Hot magenta — primary CTAs */
+  --accent-hover:   #FF9EE3;   /* Light pink hover */
+  --accent-active:  #36F9F6;   /* Cyan — pressed/active */
+  --accent-subtle:  rgba(255,106,193,0.12);
+
+  /* Semantic */
+  --color-success:  #72F1B8;   /* Neon mint green */
+  --color-warning:  #FEC95F;   /* Electric gold */
+  --color-danger:   #FE4450;   /* Neon red */
+  --color-info:     #36F9F6;   /* Neon cyan */
+
+  /* Borders — GLOW */
+  --border-subtle:  rgba(255,106,193,0.12);
+  --border-default: rgba(255,106,193,0.25);
+  --border-strong:  #FF6AC1;
+
+  /* Charts */
+  --chart-fill:     #FF6AC1;
+  --chart-grid:     #3D2F72;
+  --progress-bg:    #3D2F72;
+
+  /* Kanban */
+  --kanban-todo-header:   #2A1F4E;
+  --kanban-doing-header:  rgba(255,106,193,0.10);
+  --kanban-done-header:   rgba(114,241,184,0.08);
+  --kanban-card-bg:       #2A1F4E;
+  --kanban-card-border:   rgba(255,106,193,0.2);
+
+  /* Sidebar */
+  --sidebar-bg:     #1A1033;
+  --sidebar-active: rgba(255,106,193,0.15);
+  --sidebar-hover:  rgba(255,106,193,0.06);
+
+  /* Buttons */
+  --btn-primary-bg:   transparent;
+  --btn-primary-text: #FF6AC1;
+  --btn-primary-hover:#FF6AC1;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text:#C792EA;
+
+  /* Scrollbar */
+  --scrollbar-track: #1A1033;
+  --scrollbar-thumb: rgba(255,106,193,0.4);
+
+  /* Shadows — GLOWS */
+  --shadow-sm:  0 0 10px rgba(255,106,193,0.15);
+  --shadow-md:  0 0 30px rgba(255,106,193,0.2);
+
+  --font-sans:    'Exo 2', system-ui, sans-serif;
+  --font-mono:    'Share Tech Mono', monospace;
+  --font-display: 'Orbitron', 'Exo 2', sans-serif;
+
+  /* Notion Standard Mappings */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+
+  font-family: var(--font-sans) !important;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px) !important;
+}
+
+[data-theme="synthwave84"] h1,
+[data-theme="synthwave84"] h2,
+[data-theme="synthwave84"] h3,
+[data-theme="synthwave84"] .card-title {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+
+[data-theme="synthwave84"] .font-mono,
+[data-theme="synthwave84"] code,
+[data-theme="synthwave84"] pre,
+[data-theme="synthwave84"] .badge,
+[data-theme="synthwave84"] .env-badge {
+  font-family: var(--font-mono) !important;
+}
+
+[data-theme="synthwave84"] .card-theme-target,
+[data-theme="synthwave84"] .stats-card,
+[data-theme="synthwave84"] .kanban-card {
+  border-radius: 8px !important;
+  border: 1px solid rgba(255,106,193,0.25) !important;
+  box-shadow: 0 0 12px rgba(255,106,193,0.08) !important;
+  background-color: #2A1F4E !important;
+  will-change: box-shadow !important;
+}
+
+[data-theme="synthwave84"] .active-sidebar-item {
+  border-left: 3px solid #FF6AC1 !important;
+  background-color: rgba(255,106,193,0.15) !important;
+  box-shadow: inset 4px 0 12px rgba(255,106,193,0.3) !important;
+}
+
+[data-theme="synthwave84"] .btn-primary, 
+[data-theme="synthwave84"] button.btn-primary {
+  background-color: transparent !important;
+  border: 1px solid #FF6AC1 !important;
+  color: #FF6AC1 !important;
+  font-weight: bold !important;
+  box-shadow: 0 0 8px rgba(255,106,193,0.2) !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+[data-theme="synthwave84"] .btn-primary:hover {
+  background-color: #FF6AC1 !important;
+  color: #1A1033 !important;
+  box-shadow: 0 0 20px rgba(255,106,193,0.6) !important;
+}
+
+[data-theme="synthwave84"] .danger-risk-badge {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="synthwave84"] .progress-fill {
+  background-color: #FF6AC1 !important;
+  box-shadow: 0 0 10px rgba(255,106,193,0.6) !important;
+}
+
+[data-theme="synthwave84"] .progress-track {
+  background-color: #3D2F72 !important;
+}
+
+[data-theme="synthwave84"] .checks-certified-badge {
+  background-color: rgba(114,241,184,0.1) !important;
+  color: #72F1B8 !important;
+  border: 1px solid rgba(114,241,184,0.3) !important;
+  text-shadow: 0 0 6px rgba(114,241,184,0.8) !important;
+}
+
+[data-theme="synthwave84"] .velocity-percent {
+  font-family: 'Orbitron', 'Exo 2', sans-serif !important;
+  color: #FF6AC1 !important;
+  text-shadow: 0 0 20px rgba(255,106,193,0.7) !important;
+  font-weight: 900 !important;
+}
+
+[data-theme="synthwave84"] rect {
+  fill: #FF6AC1 !important;
+  opacity: 0.9 !important;
+}
+
+/* THEME 6: CATPPUCCIN MOCHA - Warm, pastel-over-dark */
+[data-theme="catppuccin-mocha"] {
+  --bg-base:        #1E1E2E;
+  --bg-surface:     #181825;
+  --bg-elevated:    #313244;
+  --bg-overlay:     #45475A;
+  --text-primary:   #CDD6F4;
+  --text-secondary: #BAC2DE;
+  --text-muted:     #6C7086;
+  --text-disabled:  #45475A;
+  --accent-primary: #CBA6F7;   /* Mauve */
+  --accent-hover:   #F5C2E7;   /* Pink */
+  --accent-active:  #89DCEB;   /* Sky */
+  --accent-subtle:  rgba(203,166,247,0.1);
+  --color-success:  #A6E3A1;   /* Green */
+  --color-warning:  #FAB387;   /* Peach */
+  --color-danger:   #F38BA8;   /* Red */
+  --color-info:     #89B4FA;   /* Blue */
+  --border-subtle:  #313244;
+  --border-default: #45475A;
+  --border-strong:  #CBA6F7;
+  --chart-fill:     #CBA6F7;
+  --chart-grid:     #313244;
+  --progress-bg:    #45475A;
+  --kanban-todo-header:   #181825;
+  --kanban-doing-header:  rgba(203,166,247,0.1);
+  --kanban-done-header:   rgba(166,227,161,0.1);
+  --kanban-card-bg:       #313244;
+  --kanban-card-border:   #45475A;
+  --sidebar-bg:     #181825;
+  --sidebar-active: rgba(203,166,247,0.15);
+  --sidebar-hover:  rgba(205,214,244,0.04);
+  --btn-primary-bg:   #CBA6F7;
+  --btn-primary-text: #1E1E2E;
+  --btn-primary-hover:#F5C2E7;
+  --btn-secondary-bg: #45475A;
+  --btn-secondary-text:#CDD6F4;
+  --scrollbar-track: #181825;
+  --scrollbar-thumb: #45475A;
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.5);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.4);
+  --font-sans:    'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono:    'Cascadia Code', monospace;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+
+  /* Notion Standard Mappings */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+
+  font-family: var(--font-sans) !important;
+}
+
+[data-theme="catppuccin-mocha"] .card-theme-target,
+[data-theme="catppuccin-mocha"] .stats-card,
+[data-theme="catppuccin-mocha"] .kanban-card {
+  border-radius: 14px !important;
+}
+
+[data-theme="catppuccin-mocha"] .active-sidebar-item {
+  border-radius: 9999px !important;
+  border-left: none !important;
+  background-color: rgba(203,166,247,0.15) !important;
+  color: #CBA6F7 !important;
+}
+
+[data-theme="catppuccin-mocha"] .btn-primary,
+[data-theme="catppuccin-mocha"] button.btn-primary {
+  border-radius: 10px !important;
+}
+
+
+/* THEME 7: GRUVBOX DARK - Retro terminal warmth */
+[data-theme="gruvbox"] {
+  --bg-base:        #282828;
+  --bg-surface:     #1D2021;
+  --bg-elevated:    #3C3836;
+  --bg-overlay:     #504945;
+  --text-primary:   #EBDBB2;   /* Cream */
+  --text-secondary: #D5C4A1;
+  --text-muted:     #928374;
+  --text-disabled:  #504945;
+  --accent-primary: #FABD2F;   /* Bright Yellow — the Gruvbox signature */
+  --accent-hover:   #D79921;
+  --accent-active:  #B57614;
+  --accent-subtle:  rgba(250,189,47,0.1);
+  --color-success:  #B8BB26;   /* Bright Green */
+  --color-warning:  #FE8019;   /* Bright Orange */
+  --color-danger:   #FB4934;   /* Bright Red */
+  --color-info:     #83A598;   /* Bright Aqua */
+  --border-subtle:  #3C3836;
+  --border-default: #504945;
+  --border-strong:  #FABD2F;
+  --chart-fill:     #FABD2F;
+  --chart-grid:     #3C3836;
+  --progress-bg:    #504945;
+  --kanban-todo-header:   #1D2021;
+  --kanban-doing-header:  rgba(250,189,47,0.1);
+  --kanban-done-header:   rgba(184,187,38,0.1);
+  --kanban-card-bg:       #3C3836;
+  --kanban-card-border:   #504945;
+  --sidebar-bg:     #1D2021;
+  --sidebar-active: rgba(250,189,47,0.15);
+  --sidebar-hover:  rgba(235,219,178,0.04);
+  --btn-primary-bg:   #FABD2F;
+  --btn-primary-text: #282828;
+  --btn-primary-hover:#D79921;
+  --btn-secondary-bg: #3C3836;
+  --btn-secondary-text:#EBDBB2;
+  --scrollbar-track: #1D2021;
+  --scrollbar-thumb: #504945;
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.7);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.6);
+  --font-sans:    'IBM Plex Mono', monospace;
+  --font-mono:    'IBM Plex Mono', monospace;
+  --font-display: 'IBM Plex Mono', monospace;
+
+  /* Notion Standard Mappings */
+  --notion-bg-primary: var(--bg-base);
+  --notion-bg-secondary: var(--bg-surface);
+  --notion-bg-hover: var(--bg-elevated);
+  --notion-border: var(--border-default);
+  --notion-text-primary: var(--text-primary);
+  --notion-text-secondary: var(--text-secondary);
+  --notion-text-tertiary: var(--text-muted);
+  --notion-bg-selected: var(--sidebar-active);
+  --notion-accent-blue: var(--accent-primary);
+  --notion-red: var(--color-danger);
+  --notion-amber: var(--color-warning);
+  --notion-green: var(--color-success);
+
+  --n-bg: var(--bg-base);
+  --n-surface: var(--bg-surface);
+  --n-hover: var(--bg-elevated);
+  --n-selected: var(--sidebar-active);
+  --n-border: var(--border-default);
+  --n-tx1: var(--text-primary);
+  --n-tx2: var(--text-secondary);
+  --n-tx3: var(--text-muted);
+  --n-blue: var(--accent-primary);
+  --n-red: var(--color-danger);
+  --n-amber: var(--color-warning);
+  --n-green: var(--color-success);
+
+  font-family: var(--font-sans) !important;
+}
+
+[data-theme="gruvbox"] h1,
+[data-theme="gruvbox"] h2,
+[data-theme="gruvbox"] h3,
+[data-theme="gruvbox"] h4,
+[data-theme="gruvbox"] p,
+[data-theme="gruvbox"] span,
+[data-theme="gruvbox"] div,
+[data-theme="gruvbox"] button,
+[data-theme="gruvbox"] a,
+[data-theme="gruvbox"] input,
+[data-theme="gruvbox"] textarea,
+[data-theme="gruvbox"] select,
+[data-theme="gruvbox"] .card-title,
+[data-theme="gruvbox"] .section-header {
+  font-family: var(--font-sans) !important;
+}
+
+[data-theme="gruvbox"] .section-header,
+[data-theme="gruvbox"] h2 {
+  text-transform: uppercase !important;
+  letter-spacing: 0.2em !important;
+}
+
+[data-theme="gruvbox"] .card-theme-target,
+[data-theme="gruvbox"] .stats-card,
+[data-theme="gruvbox"] .kanban-card {
+  border-radius: 0px !important;
+}
+
+[data-theme="gruvbox"] .active-sidebar-item {
+  border-left: 3px solid #FABD2F !important;
+  background-color: var(--sidebar-active) !important;
+  border-radius: 0px !important;
+}
+
+[data-theme="gruvbox"] .btn-primary,
+[data-theme="gruvbox"] button.btn-primary {
+  border-radius: 0px !important;
+}
+
+
+/* GLOBAL FONT MAPPING RULE USING VARIABLES */
+body, * {
+  font-family: var(--font-sans);
+}
+code, pre, .badge, .env-tag, .kanban-card-status, .env-badge {
+  font-family: var(--font-mono) !important;
+}
+h1, h2, h3, .page-title, .card-title {
+  font-family: var(--font-display);
+}
+
+/* GLOBAL SCROLLBAR CUSTOMIZATION */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* DYNAMIC COMPONENT OVERRIDES & MOOD ENHANCEMENTS */
+
+/* 1. Global Risk Badges */
+.risk-high {
+  background-color: color-mix(in srgb, var(--color-danger) 15%, transparent) !important;
+  color: var(--color-danger) !important;
+  border: 1px solid color-mix(in srgb, var(--color-danger) 35%, transparent) !important;
+  border-radius: 9999px !important;
+  padding: 2px 8px !important;
+  font-weight: 600 !important;
+}
+
+.risk-med {
+  background-color: color-mix(in srgb, var(--color-warning) 15%, transparent) !important;
+  color: var(--color-warning) !important;
+  border: 1px solid color-mix(in srgb, var(--color-warning) 35%, transparent) !important;
+  border-radius: 9999px !important;
+  padding: 2px 8px !important;
+  font-weight: 600 !important;
+}
+
+.risk-low {
+  background-color: color-mix(in srgb, var(--color-success) 15%, transparent) !important;
+  color: var(--color-success) !important;
+  border: 1px solid color-mix(in srgb, var(--color-success) 35%, transparent) !important;
+  border-radius: 9999px !important;
+  padding: 2px 8px !important;
+  font-weight: 600 !important;
+}
+
+/* 2. Velocity Number Hero Stat */
+.velocity-percent {
+  font-family: var(--font-display) !important;
+  color: var(--accent-primary) !important;
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+[data-theme="synthwave84"] .velocity-percent {
+  text-shadow: 0 0 20px rgba(255,106,193,0.7) !important;
+  will-change: text-shadow, filter !important;
+}
+
+/* 3. Completed Done Kanban Cards */
+.kanban-card-done {
+  opacity: 0.75 !important;
+  border-left: 3px solid color-mix(in srgb, var(--color-success) 50%, transparent) !important;
+}
+.kanban-card-done h4, 
+.kanban-card-done .task-title {
+  text-decoration: line-through !important;
+  text-decoration-color: var(--color-success) !important;
+}
+.kanban-card-done p, 
+.kanban-card-done span, 
+.kanban-card-done .task-text {
+  color: var(--text-muted) !important;
+}
+
+/* 4. Teammate & Assignee Circle Avatars */
+.team-avatar,
+.member-avatar,
+.assignee-avatar-circle {
+  background-color: var(--accent-subtle) !important;
+  color: var(--accent-primary) !important;
+  border: 1px solid var(--border-default) !important;
+}
+
+:root, .light {
+  --notion-bg-primary: #ffffff;
+  --notion-bg-secondary: #f7f6f3;
+  --notion-bg-hover: rgba(55, 53, 47, 0.08);
+  --notion-border: rgba(55, 53, 47, 0.16);
+  --notion-text-primary: rgba(55, 53, 47, 0.9);
+  --notion-text-secondary: rgba(55, 53, 47, 0.65);
+  --notion-text-tertiary: rgba(55, 53, 47, 0.45);
+  --notion-bg-selected: rgba(55, 53, 47, 0.06);
+  --notion-accent-blue: #2383e2;
+  --notion-red: #eb5757;
+  --notion-amber: #df7300;
+  --notion-green: #0f7b6c;
+
+  /* Baseline standard layout definitions */
+  --bg-base:        #f7f6f3;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #f1f0ed;
+  --bg-overlay:     #ffffff;
+  --text-primary:   rgba(55, 53, 47, 0.9);
+  --text-secondary: rgba(55, 53, 47, 0.65);
+  --text-muted:     rgba(55, 53, 47, 0.45);
+  --text-disabled:  rgba(55, 53, 47, 0.25);
+  --accent-primary: #2383e2;
+  --accent-hover:   #1b68b3;
+  --accent-active:  #14528c;
+  --accent-subtle:  rgba(35, 131, 226, 0.1);
+  --color-success:  #0f7b6c;
+  --color-warning:  #df7300;
+  --color-danger:   #eb5757;
+  --border-subtle:  rgba(55, 53, 47, 0.08);
+  --border-default: rgba(55, 53, 47, 0.16);
+
+  /* Notion-style palette standard variables */
+  --n-bg: #f7f6f3;
+  --n-surface: #ffffff;
+  --n-hover: #f1f0ed;
+  --n-selected: #eae9e4;
+  --n-border: #e9e9e7;
+  --n-tx1: #37352f;
+  --n-tx2: #787774;
+  --n-tx3: #aeaca8;
+  --n-blue: #2383e2;
+  --n-red: #e03e3e;
+  --n-amber: #d9730d;
+  --n-green: #0f7b6c;
+}
+
+.dark {
+  --notion-bg-primary: #191919;
+  --notion-bg-secondary: #202020;
+  --notion-bg-hover: rgba(255, 255, 255, 0.055);
+  --notion-border: rgba(255, 255, 255, 0.13);
+  --notion-text-primary: #e6e6e5;
+  --notion-text-secondary: rgba(255, 255, 255, 0.6);
+  --notion-text-tertiary: rgba(255, 255, 255, 0.4);
+  --notion-bg-selected: rgba(255, 255, 255, 0.08);
+  --notion-accent-blue: #2eaadc;
+  --notion-red: #ff7369;
+  --notion-amber: #faa700;
+  --notion-green: #44b281;
+
+  /* Baseline standard layout definitions */
+  --bg-base:        #191919;
+  --bg-surface:     #202020;
+  --bg-elevated:    rgba(255, 255, 255, 0.055);
+  --bg-overlay:     #202020;
+  --text-primary:   #e6e6e5;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted:     rgba(255, 255, 255, 0.4);
+  --text-disabled:  rgba(255, 255, 255, 0.25);
+  --accent-primary: #2eaadc;
+  --accent-hover:   #53bce7;
+  --accent-active:  #1d8cb8;
+  --accent-subtle:  rgba(46, 170, 220, 0.1);
+  --color-success:  #44b281;
+  --color-warning:  #faa700;
+  --color-danger:   #ff7369;
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.13);
+
+  /* Dark mode palette fallbacks */
+  --n-bg: #191919;
+  --n-surface: #202020;
+  --n-hover: rgba(255, 255, 255, 0.055);
+  --n-selected: rgba(255, 255, 255, 0.08);
+  --n-border: rgba(255, 255, 255, 0.13);
+  --n-tx1: #e6e6e5;
+  --n-tx2: rgba(255, 255, 255, 0.6);
+  --n-tx3: rgba(255, 255, 255, 0.4);
+  --n-blue: #2eaadc;
+  --n-red: #ff7369;
+  --n-amber: #faa700;
+  --n-green: #44b281;
+}
+
+/* MICRO-INTERACTIONS AND ANIMATIONS */
+
+/* Fade-in up animation for modals */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 180ms ease forwards;
+}
+
+/* Slide-in right animation for toasts */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 180ms ease forwards;
+}
+
+/* Global Transitions */
+.notion-transition {
+  transition: background 120ms ease, color 120ms ease;
+}
+
+/* Button Active states */
+.notion-btn-active:active {
+  transform: scale(0.98);
+  transition: transform 80ms;
+}
+
+/* Card hover border reveal transition */
+.notion-card {
+  transition: border-color 150ms ease;
+}
+.notion-card:hover {
+  border-color: var(--notion-bg-hover);
+}
+
+/* Hover opacity transitions */
+.notion-hover-trigger .notion-hover-reveal {
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+.notion-hover-trigger:hover .notion-hover-reveal {
+  opacity: 1;
+}
+
+/* Scrollbar Utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
